@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-experiments"
+version = "0.1.0"
+description = "Personal experiments and explorations with Large Language Models"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Mukesh Poddar" }
+]
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "ollama>=0.6.3",
+    "gradio>=6.30.0",
+    "openai>=3.32.0",
+    "sqllite",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+
+[project.scripts]
+llm-experiments = "llm_experiments.main:main"
+chatbot = "llm_experiments.chatbot:main"
+gradio-bot = "llm_experiments.gradio_bot:main"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+extraPaths = ["src"]
+
